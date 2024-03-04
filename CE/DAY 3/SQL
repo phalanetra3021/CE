@@ -1,0 +1,88 @@
+sum-1
+# You are using MYSQL
+select id,name from Student where department_id not in (select id from Department) ;
+
+sum-2
+select round(avg (population)) as Average from City;
+
+sum-3
+select distinct buyer_id from Sales s
+join Product p
+on p.product_id = s.product_id
+where p.product_name = 'S8'
+and buyer_id not in
+(
+select buyer_id from Sales s
+    join Product p on p.product_id = s.product_id
+    where p.product_name = 'iPhone'
+)
+
+sum-4
+select name from Employee order by 1 desc;
+
+sum-5
+select id,name,department from Employee where department='IT';
+
+sum-6
+select distinct department from Employee order by department;
+
+sum-7
+select id,name,department from Employee where id mod 2=1;
+
+sum-8
+select name,age,department from Employee where department='sales' and age>25;
+
+sum-9
+update Employee set name='Scott',age=25 where name='Mathew';
+SELECT * FROM Employee;
+
+sum-10
+select name from Employee order by 1 asc;
+
+sum-11
+select * from Employee Limit 5;
+
+sum-12
+select name,city from Employee where city in('New York','San Francisco');
+
+sum-13
+select name,department from Employee where gender='M';
+
+sum-14
+SELECT DISTINCT c1.seat_id
+FROM Cinema c1, Cinema c2
+WHERE c1.free = 1
+AND c2.free = 1
+AND (c1.seat_id = c2.seat_id + 1 OR c1.seat_id = c2.seat_id - 1);
+
+sum-15
+ALTER TABLE Employee RENAME TO Employee_Information;
+SHOW TABLES;
+
+sum-16
+CREATE TABLE Employee(
+Id int PRIMARY KEY,
+Name char(30) NOT NULL,
+Joining_date date NOT NULL,
+Department char(30)
+);
+DESC Employee;
+
+sum-17
+CREATE VIEW LongestCity AS
+SELECT city, LENGTH(city) as length FROM Station
+ORDER BY LENGTH(city) DESC
+LIMIT 1;
+SELECT * FROM LongestCity;
+
+sum-18
+select sell_date, count(distinct product) as num_sold,  group_concat(distinct product) as products
+from Activities 
+group by sell_date
+order by sell_date
+
+sum-19
+SELECT upper(NAME) as name,marks FROM Student WHERE Marks > 75 ORDER BY name
+
+sum-20
+select (name) as name,DAYNAME(joining_date) as dayofjoining from Employee;
